@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>MilkPackJS with CreateJS Example</title>
+    </head>
+    <body>
+    	<p style="position:absolute;left:0;bottom:0;margin:0 0 1px 5px;">Show console to see scene event flow</p>
+
+        <!-- canvas タグを作成する -->
+        <div id="sizeref">
+            <canvas id="canvas">&lt;canvas&gt; tag is not supported.</canvas>
+        </div>
+
+        <!-- 必要な依存ライブラリをロードする -->
+        <script src="/createjs_seminar/03/example/lib/createjs-2013.02.12.min.js"></script>
+        <script src="/createjs_seminar/03/example/lib/jquery.js"></script>
+        <script src="/createjs_seminar/03/example/lib/jppcorelib.js"></script>
+        <script src="/createjs_seminar/03/example/lib/kazitori.js"></script>
+        <script src="/createjs_seminar/03/example/lib/milkpack.js"></script>
+
+        <!-- アプリケーションのスクリプトをロードする -->
+        <script src="/createjs_seminar/03/example/script/application.js"></script>
+
+        <!-- アプリケーションを開始する -->
+        <script>
+            jpp.util.Namespace('app').use()
+            new app.Application({ isReleaseMode: true })
+        </script>
+
+    </body>
+</html>

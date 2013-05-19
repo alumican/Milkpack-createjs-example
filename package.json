@@ -1,0 +1,22 @@
+{
+    "name": "Milkpack-createjs-example",
+    "version": "0.1.0",
+    "description": "CreateJS seminar example",
+    "main": "index.html",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:alumican/Milkpack-createjs-example.git"
+    },
+    "author": "Yukiya Okuda",
+    "license": "MIT",
+    "readmeFilename": "README.md",
+    "devDependencies": {
+        "grunt": "~0.4.0",
+        "grunt-contrib-concat": "~0.1.3",
+        "grunt-contrib-coffee": "~0.6.0",
+        "grunt-contrib-watch": "~0.3.1"
+    }
+}
