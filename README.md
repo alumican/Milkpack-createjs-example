@@ -14,14 +14,14 @@ CreateJS勉強会発表サンプル
 deployディレクトリがホストのルートになるようにapacheローカルサーバ上で動かしてください。
 
 apache以外の環境で動かす場合は、下層ページへのダイレクトアクセスをルートにリダイレクトする処理を適宜設定してください。
-つまり、[https://github.com/glassesfactory/kazitori.js](kazitori.js)が動く環境であれば動きます。
+つまり、[kazitori.js](https://github.com/glassesfactory/kazitori.js)が動く環境であれば動きます。
 
 改造する
 ------
 srcディレクトリの中にコメント付きのソースコード一式が入っています。
 Application.coffeが起点となっているのでそちらから読み進めるのがよいでしょう。
 
-CoffeeScriptのコンパイルには[http://gruntjs.com/](grunt)のバージョン0.4以降を使用しています。
+CoffeeScriptのコンパイルには[grunt](http://gruntjs.com/)のバージョン0.4以降を使用しています。
 coffee-cli、node.jsがインストールされている環境であれば、package.jsonがあるディレクトリで `npm install` を実行するとgruntの環境が構築されるはずです。
 
 ライセンス
