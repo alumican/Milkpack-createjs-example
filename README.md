@@ -1,7 +1,7 @@
 Milkpack.js と CreateJS の連携サンプル
 ==========================
 
-第3回 CreateJS 勉強会での発表した Milkpack.js と CreateJS の連携サンプルです。
+第3回 CreateJS 勉強会で発表した Milkpack.js と CreateJS の連携サンプルです。
 
 実際に動くものを見る
 ------
