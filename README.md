@@ -4,8 +4,8 @@ Milkpack.js と CreateJS の連携サンプル
 第3回 CreateJS 勉強会で発表した [Milkpack.js](https://github.com/alumican/Milkpack.js) と [CreateJS](http://www.createjs.com) の連携サンプルです。
 
 以下の資料も併せてご覧ください。  
-[https://github.com/alumican/Milkpack-createjs-presentation](https://github.com/alumican/Milkpack-createjs-presentation)
-時間がなかったので資料の中にある createjs.DOMElement は使わずにすべて canves でレンダリングしています。  
+[https://github.com/alumican/Milkpack-createjs-presentation](https://github.com/alumican/Milkpack-createjs-presentation)  
+時間がなかったので資料の中にある createjs.DOMElement は使わずにすべて canves でレンダリングしています。
 
 実際に動くものを見る
 ------
