@@ -30,8 +30,7 @@ class IndexScene extends app.AbstractDisplayScene
         # 下層ページへの遷移ボタンを作成する
         app.Util.createButton(@manager, @container, ['/about', '/gallery'], 230)
 
-        # 現在のウィンドウサイズにコンテンツを合わせる
-        @resize(@manager.stageWidth, @manager.stageHeight)
+        @resize()
 
     # このシーンが目的地である場合、もしくはこのシーンよりも下層シーンに遷移する場合に、このシーンに遷移を開始した瞬間に呼び出される
     _onHello: () =>
@@ -39,6 +38,14 @@ class IndexScene extends app.AbstractDisplayScene
 
         # 実行したいコマンドを登録する
         @addCommand(
+            () =>
+                # ウィンドウのリサイズを監視する
+                @manager.addEventListener('resize', @_resizeHandler)
+
+                # 現在のウィンドウサイズにコンテンツを合わせる
+                @resize()
+
+            # スライド / フェードアニメーション
             new jpp.command.Parallel(
                 new jpp.command.Tween(@titleText, { y: @titleTextOffsetY }, null, 1, jpp.util.Easing.easeOutBounce)
                 new jpp.command.Tween(@container, { alpha: 1 }, null, 1, jpp.util.Easing.easeOutQuart)
@@ -51,6 +58,7 @@ class IndexScene extends app.AbstractDisplayScene
 
         # 実行したいコマンドを登録する
         @addCommand(
+            # カラーアニメーション
             new jpp.command.Tween(@titleText, { r: 1 }, null, 0.5, jpp.util.Easing.easeOutQuart, null, @_applyTitleColor)
         )
 
@@ -60,6 +68,7 @@ class IndexScene extends app.AbstractDisplayScene
 
         # 実行したいコマンドを登録する
         @addCommand(
+            # カラーアニメーション
             new jpp.command.Tween(@titleText, { r: 0 }, null, 0.5, jpp.util.Easing.easeOutQuart, null, @_applyTitleColor)
         )
 
@@ -69,10 +78,14 @@ class IndexScene extends app.AbstractDisplayScene
 
         # 実行したいコマンドを登録する
         @addCommand(
+            # スライド / フェードアニメーション
             new jpp.command.Parallel(
                 new jpp.command.Tween(@titleText, { y: @titleTextOffsetY - @titleTextMoveY }, null, 1, jpp.util.Easing.easeOutQuart)
                 new jpp.command.Tween(@container, { alpha: 0 }, null, 1, jpp.util.Easing.easeOutQuart)
             )
+
+            # ウィンドウのリサイズ監視を停止する
+            () => @manager.removeEventListener('resize', @_resizeHandler)
         )
 
     # ページタイトルテキストのカラーを変更する

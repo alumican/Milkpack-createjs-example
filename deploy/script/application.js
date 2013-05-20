@@ -158,16 +158,15 @@
       this.container = new createjs.Container();
       this.container.alpha = 0;
       this.stage.addChild(this.container);
-      this.setTitle("" + title + " | MilkpackJS with CreateJS Example");
-      return this.manager.addEventListener('resize', this._resizeHandler);
+      return this.setTitle("" + title + " | MilkpackJS with CreateJS Example");
     };
 
     AbstractDisplayScene.prototype._resizeHandler = function(event) {
-      return this.resize(event.extra.stageWidth, event.extra.stageHeight);
+      return this.resize();
     };
 
-    AbstractDisplayScene.prototype.resize = function(stageWidth, stageHeight) {
-      this.container.x = stageWidth / 2;
+    AbstractDisplayScene.prototype.resize = function() {
+      this.container.x = this.manager.stageWidth / 2;
       return this.container.y = 0;
     };
 
@@ -223,13 +222,17 @@
       this.titleText.hitArea = this.titleTextArea;
       this.container.addChild(this.titleText);
       app.Util.setButtonHandlers(this.manager, this.titleText, this.getFragment());
-      app.Util.createButton(this.manager, this.container, subFragments, offsetY + 340);
-      return this.resize(this.manager.stageWidth, this.manager.stageHeight);
+      return app.Util.createButton(this.manager, this.container, subFragments, offsetY + 340);
     };
 
     AbstractPageScene.prototype._onHello = function() {
+      var _this = this;
+
       console.log("" + (this.getFragment()) + " : Hello");
-      return this.addCommand(new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
+      return this.addCommand(function() {
+        _this.manager.addEventListener('resize', _this._resizeHandler);
+        return _this.resize();
+      }, new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
         x: 0
       }, {
         x: this.titleTextMoveX
@@ -253,6 +256,8 @@
     };
 
     AbstractPageScene.prototype._onBye = function() {
+      var _this = this;
+
       console.log("" + (this.getFragment()) + " : Bye");
       return this.addCommand(new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
         x: -this.titleTextMoveX
@@ -260,7 +265,9 @@
         x: 0
       }, 1, jpp.util.Easing.easeOutBounce), new jpp.command.Tween(this.container, {
         alpha: 0
-      }, null, 1, jpp.util.Easing.easeOutQuart)));
+      }, null, 1, jpp.util.Easing.easeOutQuart)), function() {
+        return _this.manager.removeEventListener('resize', _this._resizeHandler);
+      });
     };
 
     AbstractPageScene.prototype._applyTitleColor = function() {
@@ -315,12 +322,17 @@
       this.container.addChild(this.titleText);
       app.Util.setButtonHandlers(this.manager, this.titleText, this.getFragment());
       app.Util.createButton(this.manager, this.container, ['/about', '/gallery'], 230);
-      return this.resize(this.manager.stageWidth, this.manager.stageHeight);
+      return this.resize();
     };
 
     IndexScene.prototype._onHello = function() {
+      var _this = this;
+
       console.log("" + (this.getFragment()) + " : Hello");
-      return this.addCommand(new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
+      return this.addCommand(function() {
+        _this.manager.addEventListener('resize', _this._resizeHandler);
+        return _this.resize();
+      }, new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
         y: this.titleTextOffsetY
       }, null, 1, jpp.util.Easing.easeOutBounce), new jpp.command.Tween(this.container, {
         alpha: 1
@@ -342,12 +354,16 @@
     };
 
     IndexScene.prototype._onBye = function() {
+      var _this = this;
+
       console.log("" + (this.getFragment()) + " : Bye");
       return this.addCommand(new jpp.command.Parallel(new jpp.command.Tween(this.titleText, {
         y: this.titleTextOffsetY - this.titleTextMoveY
       }, null, 1, jpp.util.Easing.easeOutQuart), new jpp.command.Tween(this.container, {
         alpha: 0
-      }, null, 1, jpp.util.Easing.easeOutQuart)));
+      }, null, 1, jpp.util.Easing.easeOutQuart)), function() {
+        return _this.manager.removeEventListener('resize', _this._resizeHandler);
+      });
     };
 
     IndexScene.prototype._applyTitleColor = function() {
